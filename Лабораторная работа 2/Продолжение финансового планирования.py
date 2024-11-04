@@ -11,8 +11,7 @@ while a > 0:
     money_capital += spend - salary
     spend *= 1.03
     a -= 1
-print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов:", round(money_capital))
-
+print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов:", int(money_capital))
 
 
 
