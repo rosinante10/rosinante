@@ -1,43 +1,24 @@
-# TODO  Напишите функцию count_letters
-def count_letters(str):
-    alphabet = []
-    strl = str.lower()
-    k = 0
-    for i in range(len(strl)):
-        if strl[i].isalpha():
-            k += 1
-            if strl[i] not in alphabet:
-                alphabet.append(strl[i])
-    count_alphabet = []
-    count = 0
-    for j in alphabet:
-        for s in range(len(strl)):
-            if j==strl[s]:
-                count += 1
-        count_alphabet.append([j, count])
-        count = 0
-    count_alphabet.append(k)
-    return count_alphabet
+def count_letters(text):### fff
+    lower_text = text.lower()
+
+    count_letter = {}#!!
+    for a in lower_text:
+        if a.isalpha():# ffff
+            if a in count_letter:#!!
+                count_letter[a] += 1#!!!
+            else:
+                count_letter[a] = 1#!!!
+    return count_letter#!!!
 
 
-# TODO Напишите функцию calculate_frequency
-def calculate_frequency(arr):
+def calculate_frequency(count_letter):# FFF
+    total = sum(count_letter.values())
 
+    b= {}
+    for letter, count in count_letter.items():
+        b[letter] = count / total
 
-    keys = []
-    values = []
-    for i in arr:
-        if type(i) == list:
-            keys.append(i[0])
-            value = str(round(i[1]/arr[-1], 2))
-            if len(value)< 4:
-                value += '0'
-            values.append(value)
-
-    final = {keys[j]: values[j] for j in range(len(keys)) }
-    return final
-
-
+    return b
 
 
 main_str = """
@@ -76,7 +57,8 @@ main_str = """
 Свои мне сказки говорил.
 """
 
-# TODO Распечатайте в столбик букву и её частоту в тексте
-dictry = calculate_frequency(count_letters(main_str))
-for alpha, value in dictry.items():
-    print(f'{alpha}: {value}')
+cdict = count_letters(main_str)
+frdict = calculate_frequency(cdict)
+
+for letter, fr in frdict.items():
+    print(f"{letter}: {fr:.2f}")
